@@ -1,0 +1,44 @@
+<SignupTextField@MDTextFieldRound>
+    icon_left_color: .5, .5, .5, 1
+    size_hint: .5,None
+    line_color: 0, 0, 0, 1
+    normal_color: .5, .5, .5, 1
+    foreground_color: .8, .8, .8, 1
+
+<SignupScreen>:
+    SignupTextField:
+        id: email
+        icon_left: "email"
+        hint_text: "mail@example.com"
+        pos_hint: {'x': .25, 'y': .65}
+
+    SignupTextField:
+        id: passw
+        icon_left: "key-variant"
+        hint_text: "password"
+        password: True
+        pos_hint: {'x': .25, 'y': .45}
+
+
+    MDFillRoundFlatButton:
+        text: "SIGN UP"
+        pos_hint: {'x': .6, 'y': .25}
+        on_release:
+            app.firebase.dual_thread_sign_up(email.text, passw.text)
+            email.text = ""
+            passw.text = ""
+
+    MDFillRoundFlatButton:
+        text: "BACK"
+        pos_hint: {'x': .17, 'y': .25}
+        on_release:
+            root.manager.current = "login_screen"
+            root.manager.transition.direction = "right"
+            email.text = ""
+            passw.text = ""
+
+    MDLabel:
+        text: "At least 6 characters!"
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+        pos_hint: {'x': .55, 'y': -.07}

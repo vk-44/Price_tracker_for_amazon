@@ -1,0 +1,35 @@
+<LoginScreen>
+    SignupTextField:
+        id: login_email
+        icon_left: "email"
+        hint_text: "mail@example.com"
+        pos_hint: {'x': .25, 'y': .65}
+
+    SignupTextField:
+        id: login_passw
+        icon_left: "key-variant"
+        hint_text: "password"
+        password: True
+        pos_hint: {'x': .25, 'y': .45}
+
+    MDFillRoundFlatButton:
+        text: "LOGIN"
+        pos_hint: {'x': .62, 'y': .25}
+        on_release:
+            app.firebase.dual_thread_sign_in(login_email.text, login_passw.text)
+            root.manager.transition.direction = "left"
+
+    MDFillRoundFlatButton:
+        text: "SIGN UP"
+        pos_hint: {'x': .19, 'y': .25}
+        on_release:
+            root.manager.current = "signup_screen"
+            root.manager.transition.direction = "left"
+
+    MDTextButton:
+        text: "[u]Forgot password[/u]!"
+        markup: True
+        custom_color: app.theme_cls.primary_color
+        pos_hint: {'x': .35, 'y': .18}
+        on_release:
+            app.firebase.reset_password(login_email.text)

@@ -1,0 +1,53 @@
+<LabelButton@MDLabel>
+    font_style: "Button"
+    theme_text_color: "Custom"
+    text_color: app.theme_cls.primary_color
+
+<TextField@MDTextField>
+    line_color_normal: app.theme_cls.primary_color
+    required: True
+    size_hint: .70,None
+
+<HomeScreen>:
+    LabelButton:
+        text: "Enter the URL: "
+        pos_hint: {'x': .1, 'y': .2}
+
+    TextField:
+        id: url
+        hint_text: "Make sure to start with 'https'"
+        pos_hint: {'x': .15, 'y': .60}
+
+    LabelButton:
+        text: "Enter price to notify: "
+        pos_hint: {'x': .1, 'y': -0.03}
+
+    TextField:
+        id: user_price
+        hint_text: "Eg: Enter 2,500 as 2500"
+        pos_hint: {'x': .15, 'y': .37}
+
+    MDFillRoundFlatButton:
+        text: "ADD TO LIST"
+        pos_hint: {'x': .35, 'y': .25}
+        on_release:
+            app.add_to_list()
+            user_price.text = ""
+            url.text = ""
+
+    MDFillRoundFlatButton:
+        text: "VIEW TRACKING ITEMS"
+        pos_hint: {'x': .27, 'y': .15}
+        on_release:
+            app.view_list.dual_thread()
+            root.manager.current = "tracking_item_screen"
+            root.manager.transition.direction = "left"
+
+    MDTextButton:
+        text: "[u]Log out![/u]"
+        markup: True
+        custom_color: app.theme_cls.primary_color
+        pos_hint: {'x': .42, 'y': .07}
+        on_release:
+            app.sign_out()
+            root.manager.transition.direction = "right"

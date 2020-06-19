@@ -1,0 +1,26 @@
+<TrackingItemScreen>:
+    ScrollView:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+        pos_hint: {'y' : .145, 'x': 0.01}
+        size_hint: .98, .85
+
+        MDList:
+            id: md_list
+
+    MDFillRoundFlatButton:
+        text: "ADD ITEMS"
+        pos_hint: {'x': .37, 'y': .07}
+        on_release:
+            app.clear_list()
+            root.manager.current = "home_screen"
+            root.manager.transition.direction = "right"
+
+
+
+
+

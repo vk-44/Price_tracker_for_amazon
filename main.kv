@@ -1,0 +1,40 @@
+#:include loginscreen.kv
+#:include signupscreen.kv
+#:include homescreen.kv
+#:include trackingitemscreen.kv
+
+
+GridLayout:
+    cols: 1
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 0.067, 0.063, 0.118,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Image:
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            source: "icons/new1.png"
+            size_hint: .6,.3
+            pos_hint: {'x': .2, 'top': .97}
+
+        ScreenManager:
+            id: screen_manager
+            LoginScreen:
+                name: "login_screen"
+                id: login_screen
+            SignupScreen:
+                name: "signup_screen"
+                id: signup_screen
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            TrackingItemScreen:
+                name: "tracking_item_screen"
+                id: tracking_item_screen
