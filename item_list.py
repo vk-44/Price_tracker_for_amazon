@@ -88,8 +88,7 @@ class ViewList():
             item.add_widget(Image(source=img_link))
 
             app.root.ids["tracking_item_screen"].ids["md_list"].add_widget(item)
-        except Exception as e:
-            print(e)
+        except:
             pass
 
 
